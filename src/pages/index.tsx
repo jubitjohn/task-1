@@ -26,7 +26,11 @@ export const getServerSideProps = async () => {
     };
   } catch (error) {
     console.error('Failed to fetch IP address:', error);
-    
+    return {
+      props: {
+        ipAddress: 'unknown',
+      },
+    };
   }
 };
 
