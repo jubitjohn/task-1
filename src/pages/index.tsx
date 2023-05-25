@@ -63,7 +63,7 @@ const SSRPage: NextPage<HomeProps> = ({ ip, visitCount }) => {
     <div>
       <h1>Welcome to my Next.js web app!</h1>
       <p>Your IP address: {ip}</p>
-      <p>Count test 2: {visitCount}</p>
+      <p>Count test final: {visitCount}</p>
     </div>
   );
 };
