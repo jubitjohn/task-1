@@ -26,11 +26,7 @@ const CountryFlag = ({ country }: { country: string }) => {
 
 const Home: NextPage<HomeProps> = ({ ipAddress, visitCount, country }) => {
   return (
-    // <div>
-    //   <h1>Welcome to my Next.js web app!</h1>
-    //   <p>Your IP address: {ipAddress}</p>
-    //   <p>Count Testcase: {visitCount}</p>
-    // </div>
+    
     <div className={styles.container}>
       <div className={styles.innerContainer}>
         <div className={styles.leftCard}>
@@ -46,7 +42,7 @@ const Home: NextPage<HomeProps> = ({ ipAddress, visitCount, country }) => {
           <div className={styles.innerCard}>
             <h2>Website Visits : </h2>
             <div className={styles.visitCount}>
-              <p>{visitCount}</p> {/* Replace with actual visit count */}
+              <p>{visitCount}</p> 
             </div>
           </div>
         </div>
@@ -95,47 +91,3 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 };
 
 export default Home;
-// pages/ssr.tsx
-
-// import { GetServerSideProps, NextPage } from "next";
-// import React from "react";
-
-// export interface HomeProps {
-//   ip: string;
-//   visitCount: number;
-// };
-
-// const SSRPage: NextPage<HomeProps> = ({ ip, visitCount }) => {
-//   return (
-//     <div>
-//       <h1>Welcome to my Next.js web app!</h1>
-//       <p>Your IP address: {ip}</p>
-//       <p>Count test final: {visitCount}</p>
-//     </div>
-//   );
-// };
-
-// export default SSRPage;
-
-// export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-//   let ip = req.headers["x-real-ip"];
-//   if (!ip) {
-//     const forwardedFor = req.headers["x-forwarded-for"];
-//     if (Array.isArray(forwardedFor)) {
-//       ip = forwardedFor.at(0);
-//     } else {
-//       ip = forwardedFor?.split(",").at(0) ?? "Unknown";
-//     }
-//   }
-//   // const visitCountResponse = await fetch('https://peppy-jalebi-6f5a89.netlify.app/api/visit-count');
-//   const visitCountResponse = await fetch('http://localhost:3000/api/visit-count');
-//   const visitCountData = await visitCountResponse.json();
-//   const visitCount = visitCountData.ipAddress;
-//   return {
-//     props: {
-//       ip : ip||null,
-//       visitCount: visitCount || null,
-
-//     },
-//   };
-// };
