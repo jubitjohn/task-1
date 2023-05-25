@@ -2,33 +2,44 @@ import React from 'react';
 import { NextPage } from 'next';
 import axios from 'axios';
 
-interface HomeProps {
+export interface HomeProps {
   ipAddress: string;
+  visitCount: number;
 }
 
-const Home: NextPage<HomeProps> = ({ ipAddress }) => {
+const Home: NextPage<HomeProps> = ({ ipAddress, visitCount }) => {
   return (
     <div>
       <h1>Welcome to my Next.js web app!</h1>
       <p>Your IP address: {ipAddress}</p>
+      <p>Your visit count: {visitCount}</p>
     </div>
   );
 };
 
+
 export const getServerSideProps = async () => {
   try {
-    const response = await axios.get('http://api.ipstack.com/check?access_key=b766c05cdface9425fc691a378cd35a0');
-    const ipAddress = response.data.ip;
+    const response = await axios.get('http://ip-api.com/json/');
+    const ipAddress = response.data.query;
+
+    const visitCountResponse = await fetch('http://localhost:3000/api/visit-count');
+    const visitCountData = await visitCountResponse.json();
+    const visitCount = visitCountData.visitCount;
+
+
     return {
       props: {
-        ipAddress,
+        ipAddress: ipAddress || null,
+        visitCount: visitCount || null,
       },
     };
   } catch (error) {
     console.error('Failed to fetch IP address:', error);
     return {
       props: {
-        ipAddress: 'unknown',
+        ipAddress: null,
+        visitCount: null,
       },
     };
   }

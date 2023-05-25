@@ -16,6 +16,7 @@
     "axios": "^1.4.0",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
+    "js-cookie": "^3.0.5",
     "next": "^13.4.3",
     "postcss": "8.4.23",
     "react": "^18.2.0",
@@ -25,6 +26,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
     "@types/react-router-dom": "^5.3.3"
   }
 }
