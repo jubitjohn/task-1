@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 // In-memory storage for visit counts
-const visitCounts: { [ipAddress: string]: number } = {};
+const visitCounts: { [ip: string]: number } = {};
 
 const visitCountHandler = (req: NextApiRequest, res: NextApiResponse) => {
-  const ipAddress = req.headers['x-forwarded-for'] || '';
+  const ip = req.headers['x-forwarded-for'] || '';
 
   // Extract the first IP address if it is an array
-  const ipAddressToUse = Array.isArray(ipAddress) ? ipAddress[0] : ipAddress;
+  const ipAddressToUse = Array.isArray(ip) ? ip[0] : ip;
 
   // Increment visit count for the IP address
   if (ipAddressToUse) {
