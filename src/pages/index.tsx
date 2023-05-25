@@ -63,7 +63,7 @@ const SSRPage: NextPage<HomeProps> = ({ ip, visitCount }) => {
     <div>
       <h1>Welcome to my Next.js web app!</h1>
       <p>Your IP address: {ip}</p>
-      <p>Count test: {visitCount}</p>
+      <p>Count test 2: {visitCount}</p>
     </div>
   );
 };
@@ -82,7 +82,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   }
   const visitCountResponse = await fetch('https://peppy-jalebi-6f5a89.netlify.app/api/visit-count');
   const visitCountData = await visitCountResponse.json();
-  const visitCount = visitCountData.visitCount;
+  const visitCount = visitCountData.ip;
   return {
     props: {
       ip,
