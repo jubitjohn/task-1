@@ -22,7 +22,7 @@
 //   try {
 //     const response = await axios.get('http://ip-api.com/json/');
 //     const ipAddress = response.data.query;
-  
+
 
 
 //     const visitCountResponse = await fetch('https://peppy-jalebi-6f5a89.netlify.app/api/visit-count');
@@ -58,8 +58,14 @@ export interface HomeProps {
   visitCount: number;
 };
 
-const SSRPage: NextPage<HomeProps> = ({ ip,visitCount}) => {
-  return <div>IP: {ip}</div>;
+const SSRPage: NextPage<HomeProps> = ({ ip, visitCount }) => {
+  return (
+    <div>
+      <h1>Welcome to my Next.js web app!</h1>
+      <p>Your IP address: {ip}</p>
+      <p>Count: {visitCount}</p>
+    </div>
+  );
 };
 
 export default SSRPage;
@@ -74,9 +80,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       ip = forwardedFor?.split(",").at(0) ?? "Unknown";
     }
   }
+  const visitCountResponse = await fetch('https://peppy-jalebi-6f5a89.netlify.app/api/visit-count');
+  const visitCountData = await visitCountResponse.json();
+  const visitCount = visitCountData.visitCount;
   return {
     props: {
       ip,
+      visitCount,
     },
   };
 };
