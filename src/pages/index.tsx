@@ -37,7 +37,7 @@ const Home: NextPage<HomeProps> = ({ ipAddress, visitCount, country }) => {
           <div className={styles.innerCard}>
             <h2>Your IP : </h2>
             <div className={styles.visitCount}>
-              <p> {ipAddress}</p>
+              <p> {ipAddress}&nbsp;&nbsp;</p> 
               <CountryFlag country={country} />
             </div>
           </div>
