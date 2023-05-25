@@ -1,13 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { HomeProps } from '../index';
 
 // In-memory storage for visit counts
 const visitCounts: { [ipAddress: string]: number } = {};
 
 const visitCountHandler = (req: NextApiRequest, res: NextApiResponse) => {
-  const { ip } = req.body as HomeProps;
-  const ipAddress = ip; // Store the value of 'ip' in 'ipAddress'
-  // const ipAddress = req.headers['x-forwarded-for'] || '';
+  const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
 
   // Extract the first IP address if it is an array
   const ipAddressToUse = Array.isArray(ipAddress) ? ipAddress[0] : ipAddress;
@@ -19,10 +16,9 @@ const visitCountHandler = (req: NextApiRequest, res: NextApiResponse) => {
 
   const visitCount = visitCounts[ipAddressToUse];
 
-  res.status(200).json({ ipAddress });
+  res.status(200).json({ visitCount });
 };
 
 export default visitCountHandler;
-
 
 
