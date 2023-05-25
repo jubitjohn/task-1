@@ -1,14 +1,26 @@
 import React from 'react';
-import { NextPage,GetServerSideProps} from 'next';
+import { NextPage,GetServerSideProps,} from 'next';
+import Image from 'next/image';
 import styles from './homePage.module.css';
 import axios from 'axios';
+import indiaFlag from 'task-1/public/flag-3d-250.png';
 
 interface HomeProps {
   ipAddress: string;
   visitCount: number;
-}
+  country:string;
+};
 
-const Home: NextPage<HomeProps> = ({ ipAddress, visitCount }) => {
+const CountryFlag = ({ country }: { country: string }) => {
+  if (country === 'india') {
+    return <Image src="task-1/public/flag-3d-250.png" alt="India Flag" className={styles.flag} />;
+  }
+  return null;
+};
+
+
+
+const Home: NextPage<HomeProps> = ({ ipAddress, visitCount,country }) => {
   return (
     // <div>
     //   <h1>Welcome to my Next.js web app!</h1>
@@ -21,6 +33,7 @@ const Home: NextPage<HomeProps> = ({ ipAddress, visitCount }) => {
         <h2>Your IP</h2>
         <div className={styles.visitCount}>
         <p > {ipAddress}</p>
+        <CountryFlag country={country} />
           </div>
       
         </div>
@@ -49,8 +62,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       ipAddress = forwardedFor?.split(",").at(0) ?? "Unknown";
     }
   }
-    // const response = await axios.get('http://ip-api.com/json/');
-    // const ipAddress = response.data.query;
+    const response = await axios.get(`http://ip-api.com/json/${ipAddress}`);
+    const country = response.data.country;
 
 
 
