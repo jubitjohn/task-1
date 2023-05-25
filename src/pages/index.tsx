@@ -1,5 +1,6 @@
 import React from 'react';
 import { NextPage,GetServerSideProps} from 'next';
+import styles from './homePage.module.css';
 import axios from 'axios';
 
 export interface HomeProps {
@@ -9,10 +10,29 @@ export interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ ipAddress, visitCount }) => {
   return (
-    <div>
-      <h1>Welcome to my Next.js web app!</h1>
-      <p>Your IP address: {ipAddress}</p>
-      <p>Count Testcase: {visitCount}</p>
+    // <div>
+    //   <h1>Welcome to my Next.js web app!</h1>
+    //   <p>Your IP address: {ipAddress}</p>
+    //   <p>Count Testcase: {visitCount}</p>
+    // </div>
+    <div className={styles.container}>
+      <div className={styles.leftCard}>
+        <div className={styles.innerCard}>
+        <h2>Your IP</h2>
+        <div className={styles.visitCount}>
+        <p > {ipAddress}</p>
+          </div>
+      
+        </div>
+      </div>
+      <div className={styles.rightCard}>
+        <div className={styles.innerCard}>
+          <h2>Website Visit</h2>
+          <div className={styles.visitCount}>
+            <p>{visitCount}</p> {/* Replace with actual visit count */}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
