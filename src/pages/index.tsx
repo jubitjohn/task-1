@@ -23,7 +23,7 @@ export const getServerSideProps = async () => {
     const response = await axios.get('http://ip-api.com/json/');
     const ipAddress = response.data.query;
 
-    const visitCountResponse = await fetch('http://localhost:3000/api/visit-count');
+    const visitCountResponse = await fetch('https://peppy-jalebi-6f5a89.netlify.app/');
     const visitCountData = await visitCountResponse.json();
     const visitCount = visitCountData.visitCount;
 
