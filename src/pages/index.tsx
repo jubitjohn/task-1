@@ -80,7 +80,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       ip = forwardedFor?.split(",").at(0) ?? "Unknown";
     }
   }
-  const visitCountResponse = await fetch('https://peppy-jalebi-6f5a89.netlify.app/api/visit-count');
+  const visitCountResponse = await fetch('https://peppy-jalebi-6f5a89.netlify.app/api/visit-count?ip=${ipAddress}');
   const visitCountData = await visitCountResponse.json();
   const visitCount = visitCountData.ip;
   return {
