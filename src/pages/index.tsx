@@ -13,7 +13,7 @@ interface HomeProps {
 
 const CountryFlag = ({ country }: { country: string }) => {
   if (country === "India") {
-    return <Image src="task-1/public/flag-3d-250.png" alt="India Flag" className={styles.flag} />;
+    return <Image src="../public/flag-3d-250.png" alt="India Flag" className={styles.flag} />;
   }
   return null;
 };
