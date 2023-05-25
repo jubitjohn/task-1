@@ -3,7 +3,7 @@ import { NextPage, GetServerSideProps } from "next";
 import Image from "next/image";
 import styles from "./homePage.module.css";
 import axios from "axios";
-import Header from "./header";
+
 
 interface HomeProps {
   ipAddress: string;

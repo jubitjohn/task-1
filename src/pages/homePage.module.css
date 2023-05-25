@@ -1,18 +1,27 @@
+.body {
+  
+  background-color: #000000;
+}
+
 .container {
   display: flex;
   flex: 1;
+  padding-top: 130px;
+  padding: 100px;
 
   align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
   justify-content: space-between;
 }
 .innerContainer {
   display: flex;
-  height: 200px;
+  height: 150px;
   flex: 1;
   border-color: aliceblue;
   align-content: center;
   align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
   padding: 30px;
 
@@ -39,11 +48,12 @@
   height: 60px;
   flex-direction: row;
   padding: 10px;
+  padding-left: 20px;
   color: azure;
   text-align: center;
   background-color: #000000;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
   align-items: center;
 }
 
