@@ -33,7 +33,6 @@ const Home: NextPage<HomeProps> = ({ ipAddress, visitCount,country }) => {
         <h2>Your IP</h2>
         <div className={styles.visitCount}>
         <p > {ipAddress}</p>
-        <p> country:{country}</p>
         <CountryFlag country={country} />
           </div>
       
