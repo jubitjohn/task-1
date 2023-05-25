@@ -1,7 +1,4 @@
-.body {
-  
-  background-color: #000000;
-}
+
 
 .container {
   display: flex;
@@ -13,6 +10,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
   justify-content: space-between;
+  
 }
 .innerContainer {
   display: flex;
