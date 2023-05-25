@@ -12,7 +12,7 @@ const Home: NextPage<HomeProps> = ({ ipAddress, visitCount }) => {
     <div>
       <h1>Welcome to my Next.js web app!</h1>
       <p>Your IP address: {ipAddress}</p>
-      <p>Your Website visit count: {visitCount}</p>
+      <p>Your website visit count test: {visitCount}</p>
     </div>
   );
 };
