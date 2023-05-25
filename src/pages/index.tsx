@@ -3,7 +3,7 @@ import { NextPage,GetServerSideProps} from 'next';
 import styles from './homePage.module.css';
 import axios from 'axios';
 
-export interface HomeProps {
+interface HomeProps {
   ipAddress: string;
   visitCount: number;
 }
@@ -54,10 +54,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
 
 
-    const visitCountResponse = await fetch('https://peppy-jalebi-6f5a89.netlify.app/api/visit-count');
+    const visitCountResponse = await fetch('https://peppy-jalebi-6f5a89.netlify.app/api/visit-count?ipAddress=${ipAddress}');
     // const visitCountResponse = await fetch('http://localhost:3000/api/visit-count');
     const visitCountData = await visitCountResponse.json();
-    const visitCount = visitCountData.visitCount;
+    const visitCount = visitCountData.ipAddress;
 
 
     return {

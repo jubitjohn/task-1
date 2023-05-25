@@ -18,7 +18,7 @@ const visitCountHandler = (req: NextApiRequest, res: NextApiResponse) => {
 
   const visitCount = visitCounts[ipAddressToUse||''];
 
-  res.status(200).json({ visitCount });
+  res.status(200).json({ ipAddress });
 };
 
 export default visitCountHandler;
