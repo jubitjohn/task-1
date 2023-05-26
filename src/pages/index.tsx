@@ -3,6 +3,11 @@ import { NextPage, GetServerSideProps } from "next";
 import Image from "next/image";
 import styles from "./homePage.module.css";
 import axios from "axios";
+import flagsMapping from './flags.json';
+
+interface FlagsMapping {
+  [key: string]: string;
+}
 
 
 interface HomeProps {
@@ -12,15 +17,18 @@ interface HomeProps {
 }
 
 const CountryFlag = ({ country }: { country: string }) => {
-  if (country === "India") {
+  // Check if the country exists in the flag mapping
+  if (country in flagsMapping) {
+    const flagUrl = (flagsMapping as FlagsMapping)[country]; // Type assertion
     return (
       <Image
-        src="https://purecatamphetamine.github.io/country-flag-icons/3x2/IN.svg"
-        alt="India Flag"
+        src={flagUrl}
+        alt={`${country} Flag`}
         className={styles.flag}
       />
     );
   }
+
   return null;
 };
 
