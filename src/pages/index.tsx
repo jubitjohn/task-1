@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./homePage.module.css";
 import axios from "axios";
 import flagsMapping from './flags.json';
-import { useIncrementVisitCount } from "./visitCountUtils";
+import { useIncrementVisitCount } from "../lib/visitCountUtils";
 
 interface FlagsMapping {
   [key: string]: string;
