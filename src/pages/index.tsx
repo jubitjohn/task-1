@@ -3,7 +3,7 @@ import { NextPage, GetServerSideProps } from "next";
 import Image from "next/image";
 import styles from "./homePage.module.css";
 import axios from "axios";
-
+import { useIncrementVisitCount } from "./visitCountUtils";
 
 interface HomeProps {
   ipAddress: string;
@@ -25,13 +25,15 @@ const CountryFlag = ({ country }: { country: string }) => {
 };
 
 const Home: NextPage<HomeProps> = ({ ipAddress, visitCount, country }) => {
+
+  visitCount=useIncrementVisitCount(ipAddress || "");
   return (
     
     <div className={styles.container}>
       <div className={styles.innerContainer}>
         <div className={styles.leftCard}>
           <div className={styles.innerCard}>
-            <h2>Your IP : </h2>
+            <h2>Your IP :: </h2>
             <div className={styles.visitCount}>
               <p> {ipAddress}&nbsp;&nbsp;</p> 
               <CountryFlag country={country} />
@@ -68,14 +70,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     // const visitCountResponse = await fetch(
     //   `https://peppy-jalebi-6f5a89.netlify.app/api/visit-count?ipAddress=${ipAddress}`
     // );
-    const visitCountResponse = await fetch(`http://localhost:3000/api/visit-count?ipAddress=${ipAddress}`);
-    const visitCountData = await visitCountResponse.json();
-    const visitCount = visitCountData.visitCount;
+    // const visitCountResponse = IncrementVisitCount(ipAddress||'');
+    // const visitCount = visitCountResponse;
 
     return {
       props: {
         ipAddress: ipAddress || null,
-        visitCount: visitCount || null,
+        // visitCount: visitCount || null,
         country: country || null,
       },
     };
