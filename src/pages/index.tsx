@@ -65,10 +65,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     const response = await axios.get(`http://ip-api.com/json/${ipAddress}`);
     const country = response.data.country;
 
-    const visitCountResponse = await fetch(
-      `https://peppy-jalebi-6f5a89.netlify.app/api/visit-count?ipAddress=${ipAddress}`
-    );
-    // const visitCountResponse = await fetch('http://localhost:3000/api/visit-count');
+    // const visitCountResponse = await fetch(
+    //   `https://peppy-jalebi-6f5a89.netlify.app/api/visit-count?ipAddress=${ipAddress}`
+    // );
+    const visitCountResponse = await fetch(`http://localhost:3000/api/visit-count?ipAddress=${ipAddress}`);
     const visitCountData = await visitCountResponse.json();
     const visitCount = visitCountData.visitCount;
 
