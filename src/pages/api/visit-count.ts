@@ -1,31 +1,23 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import handler from './hello';
 
-interface VisitCounts {
-  [key: string]: number;
-}
+// In-memory storage for visit counts
+const visitCounts: { [ipAddress: string]: number } = {};
 
 const visitCountHandler = (req: NextApiRequest, res: NextApiResponse) => {
-  const { ipAddress } = req.query;
+  // const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+  const { ipAddress } = req.query
 
-  let visitCounts: VisitCounts = {};
-  if (typeof window !== 'undefined') {
-    // Client environment
-    visitCounts = JSON.parse(localStorage.getItem('visitCounts') || '{}');
-  }
-
+  // Extract the first IP address if it is an array
   const ipAddressToUse = Array.isArray(ipAddress) ? ipAddress[0] : ipAddress;
-  console.log('IP Address:', ipAddressToUse);
+  console.log('IP Address:', ipAddress);
 
+  // Increment visit count for the IP address
   if (ipAddressToUse) {
     visitCounts[ipAddressToUse] = visitCounts[ipAddressToUse] ? visitCounts[ipAddressToUse] + 1 : 1;
   }
 
-  if (typeof window !== 'undefined') {
-    // Client environment
-    localStorage.setItem('visitCounts', JSON.stringify(visitCounts));
-  }
-
-  const visitCount = visitCounts[ipAddressToUse || ''];
+  const visitCount = visitCounts[ipAddressToUse||''];
 
   res.status(200).json({ visitCount });
 };
